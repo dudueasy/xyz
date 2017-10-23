@@ -2,9 +2,10 @@
 fs = require('fs')
 process.chdir('/Users/apolodu/')
 
-fs.mkdirSync('demo_node')
+dir = process.argv[2]
+fs.mkdirSync(dir)
 
-process.chdir('demo_node')
+process.chdir(dir)
 fs.mkdirSync('css')
 fs.mkdirSync('js')
 
