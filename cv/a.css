@@ -25,10 +25,7 @@
     .topNavBar .card{
         color: #9a9da2;
      }
-    .topNavBar>a:hover{
-    }
-
-    .topNavBar>nav{
+     .topNavBar>nav{
         padding-top: 7px;
         float: right;
     }
