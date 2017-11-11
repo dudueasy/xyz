@@ -22,12 +22,17 @@
         font-weight: normal;
     }
 
+    .shadowed{
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23);
+    }
+
     .topNavBar {
         padding: 20px 0;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
+        z-index: 1;
     }
     
     .topNavBar .inner {
@@ -59,6 +64,7 @@
     .topNavBar nav {
         padding-top: 7px;
         float: right;
+        color:rgba(255, 255, 255, 0.7)
     }
     
     .topNavBar nav>ul {
@@ -74,7 +80,8 @@
     }
     
     .topNavBar nav>ul>li>a {
-        color: rgba(255, 255, 255, 0.7);
+        color:inherit;
+        /* color: rgba(255, 255, 255, 0.7); */
         text-decoration: none;
         font-size: 12px;
         font-weight: bold;
