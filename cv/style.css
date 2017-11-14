@@ -33,7 +33,7 @@
         left: 0;
         width: 100%;
         z-index: 1;
-        transition: All 0.3s;
+        transition: All 0.1s;
     }
     
     .topNavBar .inner {
