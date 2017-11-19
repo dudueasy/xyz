@@ -67,7 +67,12 @@ for(var index=0; index < keys['length']; index++){
         //实现定制键盘对应网页的功能.
         button.onclick = function (e) {
             var currentId = e.target.parentNode.id
-            hash[currentId] = prompt('请输入一个网站, 请以 http:// 为地址开头')
+            var x= prompt('请输入一个网址')
+            if(x.startsWith('http://')){
+                hash[currentId] = x
+            }else{
+                hash[currentId] = 'http://'+x
+            }
             localStorage.setItem('hash',JSON.stringify(hash))
             setIconSrc(e.target.previousSibling,hash[e.target.parentNode.id])
         }
