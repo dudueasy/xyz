@@ -5,24 +5,28 @@
     'length':3
     }
 
-    var hash = {
-        'q': 'http://qq.com',
-        'w': 'http://weibo.com',
-        'e': 'http://ele.me',
-        'r': 'http://renren.com',
-        't': 'http://tianya.com',
-        'y': 'http://youtube.com',
-        'u': 'http://uc.com',
-        'i': 'http://iqiyi.com',
-        'o': 'http://opera.com',
-        'p': 'http://',
-        'a': 'http://acfun.tv',
-        's': 'http://sohu.com',
-        'z': 'http://zhihu.com',
-        'b': 'http://www.bilibili.com',
-        'm': 'http://www.mcdonalds.com.cn'
+    if(window.localStorage && localStorage.getItem('hash')) {
+        var hash = JSON.parse(localStorage.getItem('hash'))
     }
-    
+    else{
+        var hash = {
+            'q': 'http://qq.com',
+            'w': 'http://weibo.com',
+            'e': 'http://ele.me',
+            'r': 'http://renren.com',
+            't': 'http://tianya.com',
+            'y': 'http://youtube.com',
+            'u': 'http://uc.com',
+            'i': 'http://iqiyi.com',
+            'o': 'http://opera.com',
+            'p': 'http://',
+            'a': 'http://acfun.tv',
+            's': 'http://sohu.com',
+            'z': 'http://zhihu.com',
+            'b': 'http://www.bilibili.com',
+            'm': 'http://www.mcdonalds.com.cn'
+        }
+    }
     index = 0
 
    //根据keys对象的'length', 来生成多个row
@@ -37,10 +41,18 @@
         while (index2 < row['length']){
             kbd = document.createElement('kbd')
             button = document.createElement('button')
-            button.textContent = 'E'
+            button.textContent = 'Edit'
+
             kbd.textContent = row[index2]
+            kbd.id = row[index2]
             kbd.appendChild(button)
             div1.appendChild(kbd)
+            //实现定制键盘对应网页的功能.
+            button.onclick = function (e) {
+                kbd_id = e.target.parentNode.id
+                hash[kbd_id] = prompt('请输入一个网站')
+                localStorage.setItem('hash',JSON.stringify(hash))
+            }
             index2 ++
         }
         index ++
@@ -50,8 +62,8 @@
     document.addEventListener('keydown',function(e){
         key = e.key
 
-        //确保只对hash对象中的key生效
-        if(Object.keys(hash).indexOf(key) != -1){
+        //确保只对hash对象中的key生效, 当key不存在的时候, indexOf 返回值是 -1
+        if(Object.keys(hash).indexOf(key) > -1){
             //stop unassigned key from triggering new tab.
             window.open(hash[key],'_self')
         }
