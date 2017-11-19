@@ -19,30 +19,38 @@
         'a': 'http://acfun.tv',
         's': 'http://sohu.com',
         'z': 'http://zhihu.com',
+        'b': 'http://www.bilibili.com',
         'm': 'http://www.mcdonalds.com.cn'
     }
     
     index = 0
-    
+
+   //根据keys对象的'length', 来生成多个row
+   //每个row是一个对象, 映射了一排键盘上的字母, 每个row都有length属性, 用于遍历整个row表.
     while(index < keys['length']){
         div1 = document.createElement('div')
         main.appendChild(div1)
         row = keys[index]
         index2 = 0
 
+        //遍历row对象里的每一个元素, 分别生成一个 <kbd>, 每个<kbd>的文本为row对象的值, 每个<kbd> 还有一个子元素 <button>
         while (index2 < row['length']){
             kbd = document.createElement('kbd')
+            button = document.createElement('button')
+            button.textContent = 'E'
             kbd.textContent = row[index2]
+            kbd.appendChild(button)
             div1.appendChild(kbd)
             index2 ++
-        } 
-
+        }
         index ++
     }
 
+    //键盘事件
     document.addEventListener('keydown',function(e){
         key = e.key
 
+        //确保只对hash对象中的key生效
         if(Object.keys(hash).indexOf(key) != -1){
             //stop unassigned key from triggering new tab.
             window.open(hash[key],'_self')

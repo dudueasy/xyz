@@ -15,8 +15,21 @@ kbd{
     display: inline-block;
     text-transform: uppercase;
     text-align: center;
+    position: relative;
     /* vertical-align: middle;  useless */
 }
+
+kbd button{
+    position: absolute;
+    right:0;
+    bottom:0;
+    display: none;
+}
+
+kbd:hover > button{
+    display: inline-block;
+}
+
 main{
     text-align: center;
 }
@@ -31,3 +44,4 @@ main{
 #main > div:nth-child(3){
     margin-left: 1em;
 }
+

@@ -1,20 +1,20 @@
 
 function insertSort(arr) {
 
-    function swap(array,i,j) {
-        var temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
+    function swap(x,y,array){
+        var tmp;
+        tmp = arr[x]
+        array[x] = array[y]
+        array[y] = tmp
     }
 
     var length = arr.length,
-        i,
-        j
-
-    for(i =1; i<length; i++){
-        for(j=0; j<i; j++){
-            if(arr[j]>arr[j+1]){
-                swap(arr,j,j+1)
+        i,  //表示已经排序过的元素, 初始为1
+        j   //表示下一个要处理的元素的下标.
+    for(i = 1;i<length;i++){
+        for(j=i;j>0;j--){
+            if(arr[j] < arr[j-1]){
+                swap(j,j-1,arr)
             }
         }
     }
@@ -22,4 +22,4 @@ function insertSort(arr) {
 
 }
 
-console.log(insertSort([2,3,5,3,1,6,3,9]))
+console.log(insertSort([9,7,54,331,4,33,5,3,1,6,30,3]))
