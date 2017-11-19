@@ -65,8 +65,7 @@
         //确保只对hash对象中的key生效, 当key不存在的时候, indexOf 返回值是 -1
         if(Object.keys(hash).indexOf(key) > -1){
             //stop unassigned key from triggering new tab.
-            window.open(hash[key],'_self')
+            window.open(hash[key],'_blank')
         }
     })
 
-    console.log(index)
