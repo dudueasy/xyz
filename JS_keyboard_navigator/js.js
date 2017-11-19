@@ -1,5 +1,4 @@
     //1. 初始化数据
-
     var keys = init()['keys']
     var hash = init()['hash']
 
@@ -10,7 +9,7 @@
     keyboardListener(hash)
 
     //下面是工具函数
-    //生成标签和标签的元素. attributes参数是一个键值对.
+    //元素和属性生成器 attributes参数是一个键值对.
     function newElemWithAttr(tagName, attributes) {
         var element = document.createElement(tagName)
         for(var key in attributes){
