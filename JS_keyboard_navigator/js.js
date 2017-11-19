@@ -1,71 +1,88 @@
-   var keys = {
-    0:{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p','length':10},
-    1:{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l','length':9},
-    2:{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m','length':7},
-    'length':3
-    }
+//1. 初始化数据
+var keys = {
+0:{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p','length':10},
+1:{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l','length':9},
+2:{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m','length':7},
+'length':3
+}
 
-    if(window.localStorage && localStorage.getItem('hash')) {
-        var hash = JSON.parse(localStorage.getItem('hash'))
+if(window.localStorage && localStorage.getItem('hash')) {
+    var hash = JSON.parse(localStorage.getItem('hash'))
+}
+else{
+    var hash = {
+        'q': 'http://qq.com', 'w': 'http://weibo.com', 'e': 'http://ele.me', 'r': 'http://renren.com',
+        't': 'http://tianya.com', 'y': 'http://youtube.com', 'u': 'http://uc.com', 'i': 'http://iqiyi.com',
+        'o': 'http://opera.com', 'p': 'http://', 'a': 'http://acfun.tv', 's': 'http://sohu.com',
+        'z': 'http://zhihu.com', 'b': 'http://www.bilibili.com', 'm': 'http://www.mcdonalds.com.cn'
     }
-    else{
-        var hash = {
-            'q': 'http://qq.com',
-            'w': 'http://weibo.com',
-            'e': 'http://ele.me',
-            'r': 'http://renren.com',
-            't': 'http://tianya.com',
-            'y': 'http://youtube.com',
-            'u': 'http://uc.com',
-            'i': 'http://iqiyi.com',
-            'o': 'http://opera.com',
-            'p': 'http://',
-            'a': 'http://acfun.tv',
-            's': 'http://sohu.com',
-            'z': 'http://zhihu.com',
-            'b': 'http://www.bilibili.com',
-            'm': 'http://www.mcdonalds.com.cn'
-        }
-    }
-    index = 0
+}
 
+//生成标签和标签的元素. attributes参数是一个键值对.
+function newElemWithAttr(tagName, attributes) {
+    var element = document.createElement(tagName)
+    for(var key in attributes){
+        element[key] = attributes[key]
+    }
+    return element
+}
+
+//对目标对象设置 src属性, target是一个img标签.
+function setIconSrc(target, domain) {
+    if(domain) {
+        target.src = domain + '/favicon.ico'
+    }else{
+        target.src= 'image/whitedot.png'
+    }
+    target.onerror = function () {
+        target.src = 'image/whitedot.png'
+    }
+}
+
+//2. 生成键盘
    //根据keys对象的'length', 来生成多个row
    //每个row是一个对象, 映射了一排键盘上的字母, 每个row都有length属性, 用于遍历整个row表.
-    while(index < keys['length']){
-        div1 = document.createElement('div')
-        main.appendChild(div1)
-        row = keys[index]
-        index2 = 0
+var index = 0
 
-        //遍历row对象里的每一个元素, 分别生成一个 <kbd>, 每个<kbd>的文本为row对象的值, 每个<kbd> 还有一个子元素 <button>
-        while (index2 < row['length']){
-            kbd = document.createElement('kbd')
-            button = document.createElement('button')
-            button.textContent = 'Edit'
+for(var index=0; index < keys['length']; index++){
+    var div1 = newElemWithAttr('div')
+    main.appendChild(div1)
+    var row = keys[index]
 
-            kbd.textContent = row[index2]
-            kbd.id = row[index2]
-            kbd.appendChild(button)
-            div1.appendChild(kbd)
-            //实现定制键盘对应网页的功能.
-            button.onclick = function (e) {
-                kbd_id = e.target.parentNode.id
-                hash[kbd_id] = prompt('请输入一个网站')
-                localStorage.setItem('hash',JSON.stringify(hash))
-            }
-            index2 ++
+
+    //遍历row对象里的每一个元素, 分别生成一个 <kbd>, 每个<kbd>的文本为row对象的值, 每个<kbd> 还有一个子元素 <button>
+    for(var index2 = 0; index2 < row['length']; index2 ++){
+
+        var img = newElemWithAttr('img')
+        var span = newElemWithAttr('span',{'textContent':row[index2],'className':'text'})
+        var button = newElemWithAttr('button',{'textContent':'Edit'})
+        var kbd = newElemWithAttr('kbd',{'id':row[index2]})
+
+        setIconSrc(img,hash[kbd.id])
+
+        kbd.appendChild(span)
+        kbd.appendChild(img)
+        div1.appendChild(kbd)
+
+        //实现定制键盘对应网页的功能.
+        button.onclick = function (e) {
+            var currentId = e.target.parentNode.id
+            hash[currentId] = prompt('请输入一个网站, 请以 http:// 为地址开头')
+            localStorage.setItem('hash',JSON.stringify(hash))
+            setIconSrc(e.target.previousSibling,hash[e.target.parentNode.id])
         }
-        index ++
+        kbd.appendChild(button)
     }
+}
 
-    //键盘事件
-    document.addEventListener('keydown',function(e){
-        key = e.key
+//3. 监听键盘
+document.addEventListener('keydown',function(e){
+    var key = e.key
 
-        //确保只对hash对象中的key生效, 当key不存在的时候, indexOf 返回值是 -1
-        if(Object.keys(hash).indexOf(key) > -1){
-            //stop unassigned key from triggering new tab.
-            window.open(hash[key],'_blank')
-        }
-    })
+    //确保只对hash对象中的key生效, 当key不存在的时候, indexOf 返回值是 -1
+    if(Object.keys(hash).indexOf(key) > -1){
+        //stop unassigned key from triggering new tab.
+        window.open(hash[key],'_blank')
+    }
+})
 
