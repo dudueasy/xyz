@@ -2,23 +2,72 @@
     padding: 0;
     margin: 0;
 }
+body{
+    background: #618ecb url('image/cover.png') no-repeat center center;
+    background-size: cover;
+    color:white;
 
+}
 a{
     text-decoration: none;
     color: inherit;
 }
 
-kbd{
-    border: 1px solid black;
-    width:4em;
-    height:4em;
-    display: inline-block;
-    text-transform: uppercase;
-    text-align: center;
-    position: relative;
-    /* vertical-align: middle;  useless */
+main{
+    min-width:600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
 }
 
+
+#main{
+    background: rgba(255,255,255,0.3);
+    border-radius: 5px;
+}
+
+#main div{
+    margin:20px 10px;
+    text-align: center;
+
+}
+
+#main > div:nth-child(2){
+    margin-left: -22px;
+}
+#main > div:nth-child(3){
+    margin-left: -80px;
+}
+
+kbd{
+    border: 1px solid #373737;
+    border-radius: 7px;
+    width:50px;
+    height: 40px;
+    background: radial-gradient(ellipse at center, #292929 0%,#111111 100%);
+    box-shadow: 0 0 0 1px #1a1b1c, 0 0 0 2px #1f2020, 0 3px 0 2px #080808;
+    color: #c5c5c5;
+    text-transform: uppercase;
+    margin-left:10px;
+    margin-right:10px;
+    font-size: 14px;
+    font-family: Helvetica;
+    position: relative;
+    display: inline-block;
+}
+kbd .text{
+    position: absolute;
+    left: 4px;
+    top: 2px;
+}
+kbd img{
+    position: absolute;
+    left:4px;
+    bottom:2px;
+    width:16px;
+    height:16px;
+}
 kbd button{
     position: absolute;
     right:0;
@@ -28,20 +77,5 @@ kbd button{
 
 kbd:hover > button{
     display: inline-block;
-}
-
-main{
-    text-align: center;
-}
-
-#main{
-    display: inline-block;
-}
-
-#main > div:nth-child(2){
-    margin-left:1em;
-}
-#main > div:nth-child(3){
-    margin-left: 1em;
 }
 
