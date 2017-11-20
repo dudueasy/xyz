@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drawboard</title>
+    <style>
+        body {
+            margin:0;
+            padding: 0;
+        }
+        #canvas {
+            background: red;
+        }
+        .actions{
+            position: absolute;
+            left:1px;
+            bottom:1px;
+        }
+
+        .actions > #eraser{
+            display: inline-block;
+            vertical-align: top;
+
+        }
+        .actions > #brush {
+            display: none;
+            vertical-align: top;
+        }
+
+        .actions.x > #eraser {
+            display: none;
+        }
+        .actions.x > #brush {
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="300px" height="400px"></canvas>
+<div class="actions">
+    <button id="eraser">橡皮擦</button>
+    <button id="brush">画笔</button>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>
