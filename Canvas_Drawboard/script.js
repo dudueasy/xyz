@@ -108,13 +108,11 @@
                 drawline( lastPos.x, lastPos.y,e.changedTouches[0].clientX,e.changedTouches[0].clientY, width,color)
             }
             if(flag == 4){
-                eraserOn(e. e.touches[0].clientX,e.touches[0].clientY ,10)
+                eraserOn(e. e.changedTouches[0].clientX,e.changedTouches[0].clientY ,10)
             }
         }
 
         canvas.ontouchend = function(e){
-            x = e.changedTouches[0].clientX
-            y = e.changedTouches[0].clientY
 
             if(flag == 2){
 
