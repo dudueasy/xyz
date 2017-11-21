@@ -17,39 +17,18 @@
        setCanvasSize(canvas)
     }
 
+    // canvas.ontouchstart = function (e) {
+    //     console.log(e)
+    // }
 
-    //mouseEventListener
-    canvas.onmousedown = function (e) {
-        if(flag == 1){
-            drawCircleDot(e.clientX,e.clientY,radius,color)
-            flag = 2
-        }
-        if(flag == 3){
-            eraserOn(e.clientX,e.clientY,width)
-            flag = 4
-        }
+    if(document.body.ontouchstart !== undefined){
+        //使用触摸事件处理器.
+        touchHandler(canvas)
+        console.log('start touching')
+    }else{
+        //使用鼠标事件处理器.
+        mouseHandler(canvas)
     }
-
-    canvas.onmousemove = function (e) {
-        if(flag == 2){
-                drawline( lastPos.x, lastPos.y,e.clientX,e.clientY, width,color)
-        }
-        if(flag == 4){
-            eraserOn(e.clientX,e.clientY,10)
-        }
-    }
-
-    canvas.onmouseup = function(e){
-        if(flag == 2){
-        drawCircleDot(e.clientX, e.clientY,radius,color)
-        flag=1
-        }
-        if(flag == 4){
-            eraserOn(e.clientX,e.clientY,width)
-            flag = 3
-        }
-    }
-
 
     //工具函数
     //最大化画布
@@ -95,6 +74,7 @@
         if(flag == 1){
             //eraser on
             flag = 3
+            //切换画笔和橡皮擦图标
             actions.classList.add('x')
         }}
 
@@ -108,4 +88,79 @@
     //橡皮擦
     function eraserOn(x,y,width) {
         context.clearRect(x-width/2,y-width/2,width,width)
+    }
+    //触摸事件处理器
+    function touchHandler(canvas){
+
+        canvas.ontouchstart = function (e) {
+            if(flag == 1){
+                drawCircleDot(e.changedTouches[0].clientX,e.changedTouches[0].clientY,radius,color)
+                flag = 2
+            }
+            if(flag == 3){
+                eraserOn(e.changedTouches[0].clientX,e.changedTouches[0].clientY,width)
+                flag = 4
+            }
+        }
+
+        canvas.ontouchmove = function (e) {
+            if(flag == 2){
+                drawline( lastPos.x, lastPos.y,e.changedTouches[0].clientX,e.changedTouches[0].clientY, width,color)
+            }
+            if(flag == 4){
+                eraserOn(e. e.touches[0].clientX,e.touches[0].clientY ,10)
+            }
+        }
+
+        canvas.ontouchend = function(e){
+            x = e.changedTouches[0].clientX
+            y = e.changedTouches[0].clientY
+
+            if(flag == 2){
+
+                drawCircleDot( e.changedTouches[0].clientX, e.changedTouches[0].clientY,radius,color)
+                flag=1
+            }
+            if(flag == 4){
+                eraserOn(e.changedTouches[0].clientX, e.changedTouches[0].clientY, width)
+                flag = 3
+            }
+        }
+
+    }
+
+
+    //鼠标事件执行器
+    function  mouseHandler(canvas){
+
+        canvas.onmousedown = function (e) {
+            if(flag == 1){
+                drawCircleDot(e.clientX,e.clientY,radius,color)
+                flag = 2
+            }
+            if(flag == 3){
+                eraserOn(e.clientX,e.clientY,width)
+                flag = 4
+            }
+        }
+
+        canvas.onmousemove = function (e) {
+            if(flag == 2){
+                drawline( lastPos.x, lastPos.y,e.clientX,e.clientY, width,color)
+            }
+            if(flag == 4){
+                eraserOn(e.clientX,e.clientY,10)
+            }
+        }
+
+        canvas.onmouseup = function(e){
+            if(flag == 2){
+                drawCircleDot(e.clientX, e.clientY,radius,color)
+                flag=1
+            }
+            if(flag == 4){
+                eraserOn(e.clientX,e.clientY,width)
+                flag = 3
+            }
+        }
     }
