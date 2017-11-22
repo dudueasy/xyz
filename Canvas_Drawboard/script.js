@@ -221,8 +221,8 @@ if(document.body.ontouchstart !== undefined){
     //按钮切换功能, 根据传入的属性给全局变量赋值.
     function changeButtonAndAttr(buttons,attr) {
         buttons.forEach(function(button){
-            button.onclick = function () {
 
+            function clickHandler() {
                 buttons.forEach(function(button) {
                     button.classList.remove('actived')
                 })
@@ -235,6 +235,13 @@ if(document.body.ontouchstart !== undefined){
                 }
                 button.classList.add('actived')
             }
+
+            //为按钮增加了 touchstart 支持.
+            ['touchstart','click'].forEach(function (e) {
+                button.addEventListener(e,clickHandler)
+            })
+
+
         })
     }
 
