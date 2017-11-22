@@ -17,7 +17,7 @@
     //生成 颜色按钮 和 尺寸按钮 的列表
     var colorsNode = document.getElementById('colors')
     var colorButtons = get_children(colorsNode)
-    var sizesNode = document.getElementById('.sizes')
+    var sizesNode = document.getElementById('sizes')
     var sizeButtons = get_children(sizesNode)
 
     //分别对颜色按钮和尺寸按钮添加事件
