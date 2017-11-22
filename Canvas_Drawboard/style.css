@@ -31,6 +31,7 @@ body {
     width:2em;
     height:2em;
     margin:10px;
+    box-shadow: 0 0 0 1px white;
     transition: all 0.3s;
 }
 
@@ -62,7 +63,7 @@ ol,li{
     margin: 10px 0;
     border-radius: 11px;
     border: 1px solid black;
-
+    box-shadow:0 0 0 1px white;
     transition: all 0.3s;
 }
 

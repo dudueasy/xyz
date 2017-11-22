@@ -120,6 +120,9 @@ if(document.body.ontouchstart !== undefined){
     //橡皮擦开启
     function eraserOn(x,y,width) {
         context.clearRect(x - radius(),y - radius(),width,width)
+
+        //这行代码只用于使用白色画笔作为橡皮擦的情况
+        posTracker(x,y)
     }
 
     //位置生成器
@@ -157,7 +160,10 @@ if(document.body.ontouchstart !== undefined){
                 drawline( lastPos.x, lastPos.y, tPosition(e).x ,tPosition(e).y, width,color)
             }
             if(flag == 4){
-                eraserOn( tPosition(e).x , tPosition(e).y,width)
+                // eraserOn( tPosition(e).x , tPosition(e).y,width)
+
+                //现在使用白色画笔作为橡皮擦使用, 上面一行代码是原清除像素功能.
+                drawline( lastPos.x, lastPos.y,position(e). x,position(e).y, width,'white')
             }
         }
 
@@ -193,7 +199,10 @@ if(document.body.ontouchstart !== undefined){
                 drawline( lastPos.x, lastPos.y,position(e).x,position(e).y, width,color)
             }
             if(flag == 4){
-                eraserOn(position(e).x,position(e).y,width)
+                //eraserOn(position(e).x,position(e).y,width)
+
+                //现在使用白色画笔作为橡皮擦使用, 上面一行代码是原清除像素功能.
+                drawline( lastPos.x, lastPos.y,position(e). x,position(e).y, width,'white')
             }
         }
 
