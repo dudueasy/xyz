@@ -163,7 +163,7 @@ if(document.body.ontouchstart !== undefined){
                 // eraserOn( tPosition(e).x , tPosition(e).y,width)
 
                 //现在使用白色画笔作为橡皮擦使用, 上面一行代码是原清除像素功能.
-                drawline( lastPos.x, lastPos.y,position(e). x,position(e).y, width,'white')
+                drawline( lastPos.x, lastPos.y,tPosition(e). x,tPosition(e).y, width,'white')
             }
         }
 
