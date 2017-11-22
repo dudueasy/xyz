@@ -7,6 +7,7 @@
     var eraser = document.getElementById('eraser')
     var brush = document.getElementById('brush')
     var cleaner = document.getElementById('cleaner')
+    var saveButton = document.getElementById('save')
 
     var context = canvas.getContext('2d')
     var lastPos ={x:undefined, y:undefined}
@@ -24,10 +25,9 @@
     changeButtonAndAttr(colorButtons,'id')
     changeButtonAndAttr(sizeButtons,'offsetHeight')
 
-    setCanvasSize(canvas)
+    setCanvasSize(canvas,context)
     window.onresize = function(){
         setCanvasSize(canvas)
-
     }
 if(document.body.ontouchstart !== undefined){
         //使用触摸事件处理器.
@@ -41,12 +41,15 @@ if(document.body.ontouchstart !== undefined){
 
     //---------------工具函数--------------
     //最大化画布尺寸
-    function setCanvasSize(canvas) {
+    function setCanvasSize(canvas,context) {
         pageWidth = document.documentElement.clientWidth
         pageHeight = document.documentElement.clientHeight
 
         canvas.height = pageHeight
         canvas.width = pageWidth
+
+        context.fillStyle = 'white'
+        context.fillRect(0,0,canvas.width,canvas.height)
     }
 
     //位置跟踪器
@@ -71,6 +74,8 @@ if(document.body.ontouchstart !== undefined){
         context.beginPath()
         context.strokeStyle = color
         context.lineWidth = width
+        context.lineJoin = context.lineCap = 'round';
+
         context.moveTo(x1,y1)
         context.lineTo(x2,y2)
         context.stroke()
@@ -84,26 +89,36 @@ if(document.body.ontouchstart !== undefined){
             //eraser on
             flag = 3
             //切换画笔和橡皮擦图标
-            eraser.classList.add('active')
-            brush.classList.remove('active')
+            eraser.classList.add('actived')
+            brush.classList.remove('actived')
         }}
 
     brush.onclick = function(){
         if(flag == 3)
             //eraser off
             flag = 1
-            brush.classList.add('active')
-            eraser.classList.remove('active')
+            brush.classList.add('actived')
+            eraser.classList.remove('actived')
 
     }
 
     cleaner.onclick = function () {
         context.clearRect(0,0,canvas.width,canvas.height)
+    }
+
+    saveButton.onclick = function () {
+
+        var url = canvas.toDataURL('image/jpeg', 1)
+        var a = document.createElement('a')
+        a.href = url
+        a.download = '我的作品'
+        a.click()
 
     }
-    //橡皮擦
+
+    //橡皮擦开启
     function eraserOn(x,y,width) {
-        context.clearRect(x-width/2,y-width/2,width,width)
+        context.clearRect(x - radius(),y - radius(),width,width)
     }
 
     //位置生成器
@@ -141,7 +156,7 @@ if(document.body.ontouchstart !== undefined){
                 drawline( lastPos.x, lastPos.y, tPosition(e).x ,tPosition(e).y, width,color)
             }
             if(flag == 4){
-                eraserOn( tPosition(e).x , tPosition(e).y,10)
+                eraserOn( tPosition(e).x , tPosition(e).y,width)
             }
         }
 
@@ -177,7 +192,7 @@ if(document.body.ontouchstart !== undefined){
                 drawline( lastPos.x, lastPos.y,position(e).x,position(e).y, width,color)
             }
             if(flag == 4){
-                eraserOn(position(e).x,position(e).y,10)
+                eraserOn(position(e).x,position(e).y,width)
             }
         }
 
@@ -199,7 +214,7 @@ if(document.body.ontouchstart !== undefined){
             button.onclick = function () {
 
                 buttons.forEach(function(button) {
-                    button.classList.remove('active')
+                    button.classList.remove('actived')
                 })
 
                 if(attr === 'id'){
@@ -208,7 +223,7 @@ if(document.body.ontouchstart !== undefined){
                 else if(attr === 'offsetHeight'){
                     width = button[attr]
                 }
-                button.classList.add('active')
+                button.classList.add('actived')
             }
         })
     }
