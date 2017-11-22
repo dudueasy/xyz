@@ -1,4 +1,5 @@
-//初始化canvas
+
+    //初始化canvas
     //flag = 1 表示准备书写状态, flag =2 表示正在书写状态, flag = 3 表示准备擦除状态, flag =4 表示正在擦除状态
     var flag = 1
     var canvas = document.getElementById('canvas')
