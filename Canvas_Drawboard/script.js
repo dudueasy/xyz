@@ -27,8 +27,9 @@
     changeButtonAndAttr(sizeButtons,'offsetHeight')
 
     setCanvasSize(canvas,context)
+
     window.onresize = function(){
-        setCanvasSize(canvas)
+        setCanvasSize(canvas,context)
     }
 if(document.body.ontouchstart !== undefined){
         //使用触摸事件处理器.
