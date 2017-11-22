@@ -28,8 +28,8 @@ body {
 }
 
 .actions svg{
-    width:2em;
-    height:2em;
+    width:3em;
+    height:3em;
     margin:10px;
     box-shadow: 0 0 0 1px white;
     transition: all 0.3s;
