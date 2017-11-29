@@ -34,6 +34,16 @@
         width: 100%;
         z-index: 1;
         transition: All 0.1s;
+        color:rgba(255, 255, 255, 0.7)
+
+    }
+
+    .sticky{
+        background: white;
+        padding: 10px 0;
+        z-index: 1;
+        box-shadow: 0 0 10px rgba(0,0,0,0.25);
+        color: #3d4451;
     }
     
     .topNavBar .inner {
@@ -65,7 +75,6 @@
     .topNavBar nav {
         padding-top: 7px;
         float: right;
-        color:rgba(255, 255, 255, 0.7)
     }
     
     .topNavBar nav>ul {
@@ -82,7 +91,6 @@
     
     .topNavBar nav>ul>li>a {
         color:inherit;
-        /* color: rgba(255, 255, 255, 0.7); */
         text-decoration: none;
         font-size: 12px;
         font-weight: bold;
