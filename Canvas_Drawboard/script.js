@@ -23,8 +23,8 @@
     var sizeButtons = get_children(sizesNode)
 
     //分别对颜色按钮和尺寸按钮添加事件
-    changeButtonAndAttr(colorButtons,'id')
-    changeButtonAndAttr(sizeButtons,'offsetHeight')
+    changeButtonClassAndAttr(colorButtons,'id')
+    changeButtonClassAndAttr(sizeButtons,'offsetHeight')
 
     setCanvasSize(canvas,context)
 
@@ -76,12 +76,14 @@ if(document.body.ontouchstart !== undefined){
         context.beginPath()
         context.strokeStyle = color
         context.lineWidth = width
+        //线条圆滑设置
         context.lineJoin = context.lineCap = 'round';
 
         context.moveTo(x1,y1)
         context.lineTo(x2,y2)
         context.stroke()
         context.closePath()
+
         posTracker(x2,y2)
     }
 
@@ -220,7 +222,7 @@ if(document.body.ontouchstart !== undefined){
     }
 
     //按钮切换功能, 根据传入的属性给全局变量赋值.
-    function changeButtonAndAttr(buttons,attr) {
+    function changeButtonClassAndAttr(buttons,attr) {
         buttons.forEach(function(button){
 
             function clickHandler() {
@@ -241,8 +243,6 @@ if(document.body.ontouchstart !== undefined){
             ['touchstart','click'].forEach(function (e) {
                 button.addEventListener(e,clickHandler)
             })
-
-
         })
     }
 

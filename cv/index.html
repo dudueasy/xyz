@@ -15,22 +15,33 @@
         }
     </style>
     <link rel="stylesheet" href='style.css'>
-    <!-- <script src="cv/script/jquery-3.2.1.slim.min.js"></script> -->
+    <link rel="stylesheet" href='loading.css'>
     <script src="script/script.js"></script>
 </head>
 
 <body>
+    <div id='siteWelcome' class="site-welcome active">
+        <div class="loading"></div>
+    </div>
     <div class="topNavBar">
         <div class="inner clearfix">
             <a href="" class="logo" alt='logl'>
                 <span class="rs">RS</span>
                 <span class="card">card</span>
             </a>
-            <nav>
+            <nav class="menu">
                 <ul class="clearfix">
-                    <li><a href="#">关于</a></li>
-                    <li><a href="#">技能</a></li>
-                    <li><a href="#">作品</a></li>
+                    <li><a href="#siteAbout">关于</a></li>
+                    <li><a href="#siteSkills">技能</a></li>
+                    <li>
+                        <a href="#siteWorks">作品</a>
+                        <ul class="submenu">
+                            <li>作品 1</li>
+                            <li>作品 2</li>
+                            <li>作品 3</li>
+                        </ul>
+
+                    </li>
                     <li><a href="#">博客</a></li>
                     <li><a href="#">日历</a></li>
                     <li><a href="#">联系方式</a></li>
@@ -46,7 +57,7 @@
         </div>
     </div>
     <main>
-        <div class="userCard">
+        <div id="siteAbout" class="userCard">
             <div class="pictureAndText clearfix">
                 <div class="picture">
                     <img src="img/avatar.jpg" alt="头像" width="299px">
@@ -103,8 +114,7 @@
             apolo, 资深前端工程师。<br> 技能：前端开发，Rails 开发，Node.js 开发
         </p>
 
-
-    <section class="skills">
+        <section id="siteSkills" class="skills">
         <h2>技能</h2>
         <ol>
             <div class="liWrapper clearfix">
@@ -152,7 +162,7 @@
         </ol>
     </section>
     
-    <section class="portfolio">
+        <section id="siteWorks" class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -190,7 +200,12 @@
         </div>
 
     </section>
-</main>
+    </main>
+    <script>
+        setTimeout(function () {
+            siteWelcome.classList.remove('active')
+        }, 2000)
+    </script>
 </body>
 
 </html>
