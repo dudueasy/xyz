@@ -2,12 +2,9 @@ let n
 initiallize()
 setInterval(()=>{
     if(n>3){n-=3}
-
     displayNode(getImage(n))
-
     let next = (n%3)+1
     moveAwayNode(getImage(next))
-
     n+=1
 }, 1000)
 
