@@ -2,6 +2,7 @@
     var timerId
     initiallize()
     startLoop()
+    document.addEventListener('visibilitychange', visibilityChangeHandler)
 
     function initiallize() {
         n = 1
@@ -38,3 +39,15 @@
         }, 1000)
      }
 
+    function stopLoop() {
+        clearInterval(timerId)
+    }
+
+    function visibilityChangeHandler() {
+        if(document.hidden){
+            stopLoop()
+        }
+        else{
+            startLoop()
+        }
+    }
