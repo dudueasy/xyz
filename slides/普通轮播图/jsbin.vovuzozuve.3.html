@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2018 by anonymous (http://js.jirengu.com/vovuzozuve/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+
+
+<!--这个轮播图实现了普通轮播图的特性, 能够定时切换图片, 自动高亮当前图片对应的按钮, -->
+<!--轮播窗口实现了对 onmouseenter和 onmouseleave 事件做出停止轮播和继续轮播的功能-->
+
+<meta name="robots" content="noindex">
+<html>
+
+<head>
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+.images{
+  display:flex;
+  align-items: flex-start;
+  transition: All 0.3s;
+}
+
+.images >img{
+  
+}
+
+.window{
+  border:2px solid red;
+  overflow:hidden;
+  width:270px;
+  height:180px;
+}
+
+.red{color:red;}
+
+
+</style>
+</head>
+
+<body>
+  <div class="window">
+    <div class="images">
+      <img src="images/1.png" alt="图片1">
+      <img src="images/2.png" alt="图片2">
+      <img src="images/3.png" alt="图片3">
+    </div>
+  </div>
+  <div id='buttons'>
+
+    <button id="button1">第1张</button>
+    <button id="button2">第2张</button>
+    <button id="button3">第3张</button>
+  </div>
+<script id="jsbin-javascript">
+var allButtons = $('#buttons > button')
+
+for (let i = 0; i < allButtons.length; i++) {
+    $(allButtons[i]).on('click', (e) => {
+       $('.images').css({
+      'transform': 'translateX('+(-270*i) +'px)'
+    })
+    allButtons.eq(i).addClass('red').siblings('.red').removeClass('red')
+  })
+}
+
+var n = 0
+var size = $('.images').children().length;
+
+var timer = setInterval(()=>{
+  n+=1
+  let index = n % size
+  allButtons.eq(index).trigger('click')
+
+}, 5000)
+
+$('.window').on('mouseenter', ()=>{clearInterval(timer)})
+$('.window').on('mouseleave', ()=>{timer})
+
+</script>
+</body>
+
+</html>
