@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4576f9c3-6dad-46a2-a354-b0d6687ef12d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/slides/无缝轮播/style.css" afterPath="$PROJECT_DIR$/slides/无缝轮播/style.css" />
-    </list>
+    <list default="true" id="4576f9c3-6dad-46a2-a354-b0d6687ef12d" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -18,7 +15,7 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/slides/无缝轮播/index.html">
+        <entry file="file://$PROJECT_DIR$/slides/Loop mode/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
               <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
@@ -28,7 +25,7 @@
         </entry>
       </file>
       <file leaf-file-name="jsbin.vovuzozuve.3.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/slides/普通轮播图/jsbin.vovuzozuve.3.html">
+        <entry file="file://$PROJECT_DIR$/slides/default mode/jsbin.vovuzozuve.3.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-479">
               <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
@@ -38,24 +35,24 @@
         </entry>
       </file>
       <file leaf-file-name="1.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/slides/普通轮播图/images/1.png">
+        <entry file="file://$PROJECT_DIR$/slides/default mode/images/1.png">
           <provider selected="true" editor-type-id="images">
             <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/slides/无缝轮播/main.js">
+        <entry file="file://$PROJECT_DIR$/slides/Loop mode/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+            <state relative-caret-position="330">
+              <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/slides/无缝轮播/style.css">
+        <entry file="file://$PROJECT_DIR$/slides/Loop mode/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="124">
               <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
@@ -157,7 +154,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="y" value="22" />
     <option name="width" value="1152" />
     <option name="height" value="778" />
@@ -213,13 +210,13 @@
               <item name="xyz" type="b2602c69:ProjectViewProjectNode" />
               <item name="xyz" type="462c0819:PsiDirectoryNode" />
               <item name="slides" type="462c0819:PsiDirectoryNode" />
-              <item name="无缝轮播" type="462c0819:PsiDirectoryNode" />
+              <item name="default mode" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xyz" type="b2602c69:ProjectViewProjectNode" />
               <item name="xyz" type="462c0819:PsiDirectoryNode" />
               <item name="slides" type="462c0819:PsiDirectoryNode" />
-              <item name="普通轮播图" type="462c0819:PsiDirectoryNode" />
+              <item name="Loop mode" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -307,7 +304,7 @@
       <workItem from="1514747050945" duration="709000" />
       <workItem from="1514748129749" duration="1890000" />
       <workItem from="1514808106329" duration="7564000" />
-      <workItem from="1515323215323" duration="14612000" />
+      <workItem from="1515323215323" duration="14743000" />
     </task>
     <task id="LOCAL-00001" summary="更新">
       <created>1510616907452</created>
@@ -551,7 +548,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143375000" />
+    <option name="totallyTimeSpent" value="143506000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -563,10 +560,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1152" height="778" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1152" height="778" extended-state="1" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16091955" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16091955" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.49678013" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32796487" sideWeight="0.51425946" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1005,17 +1001,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/slides/无缝轮播/images/1.png">
+    <entry file="file://$PROJECT_DIR$/slides/Loop mode/images/1.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/slides/普通轮播图/images/1.png">
+    <entry file="file://$PROJECT_DIR$/slides/default mode/images/1.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/slides/普通轮播图/jsbin.vovuzozuve.3.html">
+    <entry file="file://$PROJECT_DIR$/slides/default mode/jsbin.vovuzozuve.3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-479">
           <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
@@ -1023,7 +1019,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/slides/无缝轮播/index.html">
+    <entry file="file://$PROJECT_DIR$/slides/Loop mode/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
@@ -1031,7 +1027,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/slides/无缝轮播/style.css">
+    <entry file="file://$PROJECT_DIR$/slides/Loop mode/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
           <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
@@ -1039,10 +1035,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/slides/无缝轮播/main.js">
+    <entry file="file://$PROJECT_DIR$/slides/Loop mode/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        <state relative-caret-position="330">
+          <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
           <folding />
         </state>
       </provider>
