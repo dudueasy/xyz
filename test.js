@@ -1,28 +1,26 @@
-window.jQuery = function(nodeOrSelector) {
-    let nodes = {}
-    if (typeof nodeOrSelector === 'string') {
-        let temp = document.querySelectorAll(nodeOrSelector)
-        for (let i = 0; i < temp.length; i++) {
-            nodes[i] = temp[i]
-        }
-        nodes.length = temp.length
-    } else if (nodeOrSelector instanceof Node) {
-        nodes = {
-            0: nodeOrSelector,
-            length: 1
-        }
-    }
+let array_n = [2, 3, 4, 3, 2, 24, 4, 5, 4, 23, 1, 23, 12, 32, 3, 24, 3, 5, 6, 6, 87, 9, 8, 8, 76, 75, 6, 45, 45]
 
-    nodes.addClass = function(className) {
-        for (let i = 0; i < nodes.length; i++) {
-            nodes[i].classList.add(className)
-        }
-    }
 
-    nodes.setText = function(text) {
-        for (let i = 0; i < nodes.length; i++) {
-            nodes[i].textContent = text
-        }
-    }
-    return nodes
+function switchIndex(array, i, j) {
+    let temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
 }
+
+
+function bubbleSort(array) {
+    for (var i = 0 ; i < array.length-2 ; i++) {
+        for (var j = array.length-1 ; j>0 ;j--) {
+
+             if (array[i] > array[i+1]) {
+                switchIndex(array, i, (i+1))
+            }
+        }
+    }
+    return array
+}
+
+
+console.log(bubbleSort(array_n))
+
+
