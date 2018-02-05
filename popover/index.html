@@ -51,7 +51,8 @@
 </div>
 
 <script>
-    //    $wrapper = $('.wrapper')
+
+
     $button = $('.wrapper button')
     $popover = $('.popover')
 
@@ -62,21 +63,11 @@
         $(document).one('click', (e) => {
             console.log(2)
             $popover.hide()
-
         })
-
-
     })
     $popover.on('click', (e) => {
         e.stopPropagation()
     })
-    //
-    //    $wrapper.on('mouseenter', (e) => {
-    //        $popover.show()
-    //    })
-    //    $wrapper.on('mouseleave', (e) => {
-    //        $popover.hide()
-    //    })
 
 
 </script>

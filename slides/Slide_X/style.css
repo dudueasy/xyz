@@ -89,6 +89,7 @@
 }
 
 #buttons > .tiny-button {
+    border-left: 0;
     display: inline-block;
     width: 1px;
     height: 45px;
