@@ -10,7 +10,7 @@
         .popover {
             border: 1px solid red;
             position: absolute;
-            left: 100%;
+            left: 105%;
             top: 0;
             padding: 10px;
             white-space: nowrap;
@@ -51,11 +51,12 @@
 </div>
 
 <script>
-    $wrapper = $('.wrapper')
+    //    $wrapper = $('.wrapper')
+    $button = $('.wrapper button')
     $popover = $('.popover')
 
-    $wrapper.on('click', (e) => {
-        $popover.show()
+    $button.on('click', (e) => {
+        $popover.toggle()
         e.stopPropagation()
 
         $(document).one('click', (e) => {
@@ -64,15 +65,18 @@
 
         })
 
-    })
 
-//
-//    $wrapper.on('mouseenter', (e) => {
-//        $popover.show()
-//    })
-//    $wrapper.on('mouseleave', (e) => {
-//        $popover.hide()
-//    })
+    })
+    $popover.on('click', (e) => {
+        e.stopPropagation()
+    })
+    //
+    //    $wrapper.on('mouseenter', (e) => {
+    //        $popover.show()
+    //    })
+    //    $wrapper.on('mouseleave', (e) => {
+    //        $popover.hide()
+    //    })
 
 
 </script>
