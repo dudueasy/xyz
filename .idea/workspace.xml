@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4576f9c3-6dad-46a2-a354-b0d6687ef12d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/slides/Slide_X/images/macbook.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/slides/Slide_X/images/thumb_imac.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/slides/Slide_X/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -226,12 +223,6 @@
               <item name="xyz" type="b2602c69:ProjectViewProjectNode" />
               <item name="xyz" type="462c0819:PsiDirectoryNode" />
               <item name="slides" type="462c0819:PsiDirectoryNode" />
-              <item name="default mode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xyz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyz" type="462c0819:PsiDirectoryNode" />
-              <item name="slides" type="462c0819:PsiDirectoryNode" />
               <item name="Slide_X" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -346,7 +337,7 @@
       <workItem from="1517741673141" duration="103000" />
       <workItem from="1517741888794" duration="659000" />
       <workItem from="1517750242081" duration="10625000" />
-      <workItem from="1517811645853" duration="16433000" />
+      <workItem from="1517811645853" duration="16595000" />
     </task>
     <task id="LOCAL-00001" summary="更新">
       <created>1510616907452</created>
@@ -597,7 +588,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179929000" />
+    <option name="totallyTimeSpent" value="180091000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -610,7 +601,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1237" height="778" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1981908" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.49678013" order="6" side_tool="false" content_ui="tabs" />
@@ -619,7 +609,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32796487" sideWeight="0.48574057" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24839006" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30746704" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30746704" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
