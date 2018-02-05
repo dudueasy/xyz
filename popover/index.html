@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .wrapper {
+            position: relative;
+            display: inline;
+        }
+
+        .popover {
+            border: 1px solid red;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            padding: 10px;
+            white-space: nowrap;
+            display: none;
+            background: #fff;
+        }
+
+        .popover::before {
+            display: block;
+            position: absolute;
+            right: 100%;
+            top: 0;
+            border: 10px solid transparent;
+            border-right-color: red;
+            content: '';
+        }
+
+        .popover::after {
+            display: block;
+            position: absolute;
+            right: 98%;
+            top: 0;
+            border: 10px solid transparent;
+            border-right-color: white;
+            content: '';
+        }
+    </style>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <meta charset="UTF-8">
+    <title>点击关闭浮层</title>
+</head>
+<body>
+<div class="wrapper">
+    <button>点我</button>
+    <div class="popover">
+        我是浮层
+    </div>
+</div>
+
+<script>
+    $wrapper = $('.wrapper')
+    $popover = $('.popover')
+
+    $wrapper.on('click', (e) => {
+        $popover.show()
+        e.stopPropagation()
+
+        $(document).one('click', (e) => {
+            console.log(2)
+            $popover.hide()
+
+        })
+    })
+</script>
+</body>
+
+</html>

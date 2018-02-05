@@ -24,14 +24,14 @@ if(path == '/'){
         '<!DOCTYPE html>'+
         '<html><head>'+
         '<link rel="stylesheet" href="/style.css">'+
-        '<script src="main.js"></script></head>'+
+        '<script src="main.js.bak"></script></head>'+
         '<body><h1>Yeah!</h1>'+
         '</body></html>'
     )
 }else if(path == '/style.css'){
     response.setHeader('Content-Type','text/css; charset=utf-8')
     response.write("body{background-color: grey}h1{color:red}")
-}else if(path == '/main.js'){
+}else if(path == '/main.js.bak'){
     response.setHeader('Content-Type','text/javascript; charset=utf-8')
     response.write("alert('你好!')")
 }else{

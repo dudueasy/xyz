@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.slide_window {
+    width: 400px;
+    height: 300px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: All 1s;
+}
+
+.slides > img {
+    width: 100%;
+}
+.controls{
+    text-align: center;
+}
+
+#buttonWrapper >button{
+    padding:2px 10px;
+    margin:2px;
+
+}
+

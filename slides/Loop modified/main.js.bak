@@ -1,0 +1,48 @@
+// 脚本未完成
+
+
+let $buttons = $('#buttonWrapper > button')
+let $slides = $('.slides')
+let $images = $slides.children('img')
+
+imageLength = $images.length
+
+
+$firstCopy = $images.eq(0).clone(true)
+$lastCopy = $images.eq(imageLength - 1).clone(true)
+
+
+$slides.prepend($lastCopy)
+$slides.append($firstCopy)
+
+
+initialize()
+
+
+let current = 0
+let order
+
+// window.onload =     initialize()
+
+
+function slides_move(index, slideElement) {
+    order = index + 1
+    slideElement.css({transform: 'translateX(' + order * -400 + 'px)'})
+    console.log(magnitude)
+}
+
+
+for (let n = 0; n < $buttons.length; n++) {
+    $($buttons[n]).on('click', () => {
+        console.log(`last position on ${current}`)
+        slides_move(n, $slides)
+        // $slides.css({transform: 'translateX(' + order * -400 + 'px)'})
+        current = n
+    })
+}
+
+
+function initialize() {
+    magnitude = -400
+    $slides.css({'transform': `translateX(${magnitude}px)`})
+}
