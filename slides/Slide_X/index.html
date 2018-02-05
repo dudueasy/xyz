@@ -3,118 +3,10 @@
 <html>
 <head>
 
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
     <meta charset="utf-8">
     <title>轮播图</title>
-    <style >
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .gallery {
-            margin: 20px auto;
-            width: 920px;
-            -webkit-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.39);
-            -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.39);
-            box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.39);
-
-        }
-
-        .slides {
-            display: flex;
-            align-items: flex-start;
-            transition: All 0.3s;
-        }
-
-        .images > img {
-
-        }
-
-        .window {
-            border: 1px solid white;
-            overflow: hidden;
-            width: 920px;
-            height: 400px;
-        }
-
-        .menu {
-            text-align: center;
-            border: 1px solid white;
-
-            background: rgba(242, 239, 242, 1);
-            background: -moz-linear-gradient(top, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-
-            background: -webkit-linear-gradient(top, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-            background: -o-linear-gradient(top, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-            background: -ms-linear-gradient(top, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-            background: linear-gradient(to bottom, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2eff2', endColorstr='#f5f2f5', GradientType=0);
-
-        }
-
-        .red {
-            height: 100px;
-            background: rgba(255, 245, 255, 1);
-            background: radial-gradient(ellipse at center, rgba(255, 245, 255, 1) 0%, rgba(230, 230, 230, 1) 32%, rgba(235, 230, 235, 1) 46%, rgba(189, 178, 189, 1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5ff', endColorstr='#bdb2bd', GradientType=1);
-        }
-
-        #buttons > .button {
-            display: inline-block;
-            width: 60px;
-            height: 45px;
-            border-left: 1px solid white;
-            margin-right: 1px;
-            background: rgba(242, 239, 242, 1);
-            background: -moz-linear-gradient(top, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-
-            background: -webkit-linear-gradient(top, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-            background: -o-linear-gradient(top, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-            background: -ms-linear-gradient(top, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-            background: linear-gradient(to bottom, rgba(242, 239, 242, 1) 0%, rgba(254, 254, 254, 1) 15%, rgba(254, 254, 254, 1) 26%, rgba(245, 242, 245, 1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2eff2', endColorstr='#f5f2f5', GradientType=0);
-            text-align: center;
-            vertical-align: middle;
-
-            -webkit-box-shadow: 1px 0px 5px -3px rgba(0, 0, 0, 0.4);
-            -moz-box-shadow: 1px 0px 5px -3px rgba(0, 0, 0, 0.4);
-            box-shadow: 1px 0px 5px -3px rgba(0, 0, 0, 0.4);
-        }
-
-        #buttons > .button:before { /* create a full-height inline block pseudo=element */
-            content: '';
-            display: inline-block;
-            vertical-align: middle; /* vertical alignment of the inline element */
-            height: 100%;
-        }
-
-        #buttons > .button:hover {
-            background: #f6f6f6;
-        }
-
-        #buttons > .tiny-button {
-            display: inline-block;
-            width: 1px;
-            height: 45px;
-
-            text-align: center;
-            vertical-align: middle;
-            -webkit-box-shadow: 1px 0px 5px -3px rgba(0, 0, 0, 0.4);
-            -moz-box-shadow: 1px 0px 5px -3px rgba(0, 0, 0, 0.4);
-            box-shadow: 1px 0px 5px -3px rgba(0, 0, 0, 0.4);
-        }
-
-        .button > img {
-            display: inline;
-            height: 23px;
-            vertical-align: middle;
-
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -140,36 +32,8 @@
     </div>
 
 </div>
-<script id="jsbin-javascript">
-    var allButtons = $('#buttons  .button')
-
-    for (let i = 0; i < allButtons.length; i++) {
-        $(allButtons[i]).on('click', (e) => {
-            $('.slides').css({
-                'transform': 'translateX(' + (-920 * i) + 'px)'
-            })
-            allButtons.eq(i).addClass('red').siblings('.red').removeClass('red')
-        })
-    }
-
-    var n = 0
-    var size = $('.slides').children().length;
-
-    var timer = setInterval(() => {
-        n += 1
-        let index = n % size
-        allButtons.eq(index).trigger('click')
-
-    }, 5000)
-
-    $('.window').on('mouseenter', () => {
-        clearInterval(timer)
-    })
-    $('.window').on('mouseleave', () => {
-        timer
-    })
-
-</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="main.js"></script>
 </body>
 
 </html>
