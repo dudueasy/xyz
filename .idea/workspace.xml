@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4576f9c3-6dad-46a2-a354-b0d6687ef12d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/slides/Slide_X/index.html" afterPath="$PROJECT_DIR$/slides/Slide_X/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,8 +40,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/slides/Slide_X/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="61" column="39" lean-forward="false" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="39" />
+            <state relative-caret-position="105">
+              <caret line="7" column="63" lean-forward="false" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -337,7 +338,7 @@
       <workItem from="1517741673141" duration="103000" />
       <workItem from="1517741888794" duration="659000" />
       <workItem from="1517750242081" duration="10625000" />
-      <workItem from="1517811645853" duration="16595000" />
+      <workItem from="1517811645853" duration="16740000" />
     </task>
     <task id="LOCAL-00001" summary="更新">
       <created>1510616907452</created>
@@ -588,7 +589,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180091000" />
+    <option name="totallyTimeSpent" value="180236000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1049,8 +1050,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/slides/Slide_X/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="61" column="39" lean-forward="false" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="39" />
+        <state relative-caret-position="105">
+          <caret line="7" column="63" lean-forward="false" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
           <folding />
         </state>
       </provider>
