@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Made By &lt;img&gt; </title>
+</head>
+<body>
+<button id="button">点击我发送一个请求</button>
+<script>
+
+    let button = document.getElementById('button')
+    // 创建一个随机的 回调函数名
+    let randomName
+
+    function getRandomName() {
+        return 'Apolo' + (new Date()).getTime()
+    }
+
+    button.onclick = () => {
+        // 插入script标签
+        let script = document.createElement('script')
+        document.body.appendChild(script)
+
+        randomName = getRandomName()
+        // 发起get请求, callback的值是一个全局函数名, 请求连接需要加上随机数来避免浏览器使用缓存
+        script.src = `/script_request/?callback=${randomName}&random=${(new Date()).getTime()}`
+
+        // 删除script标签和全局回调函数
+        script.onload = function (e) {
+            e.currentTarget.remove()
+            delete window[randomName]
+        }
+
+        script.onerror = function () {
+            e.currentTarget.remove()
+            delete window[randomName]
+        }
+
+        // 绑定一个回调函数
+        window[randomName] = (data) => {
+            console.log(`你好 ${data.msg}`)
+        }
+    }
+
+</script>
+
+
+</body>
+</html>

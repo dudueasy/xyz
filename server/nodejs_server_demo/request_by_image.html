@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Made By &lt;img&gt; </title>
+</head>
+<body>
+<button id="button">点击我发送一个请求</button>
+<script>
+
+    let button = document.getElementById('button')
+    button.onclick = () => {
+        let image = document.createElement('img')
+        image.src = '/image_request/'
+
+//        判断请求状态
+        image.onload = function () {
+            console.log('success')
+        }
+        image.onerror = function () {
+            console.log('error')
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
