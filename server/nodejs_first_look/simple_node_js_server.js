@@ -17,8 +17,8 @@ var server = http.createServer(function(request, response){
   var queryObject = parsedUrl.query
   var method = request.method
 
-  /******** 从这里开始看，上面不要看 ************/
-if(path == '/'){
+  // /******** 从这里开始看，上面不要看 ************/
+if(path === '/'){
     response.setHeader('Content-Type','text/html; charset=utf-8')
     response.write(
         '<!DOCTYPE html>'+
@@ -28,17 +28,17 @@ if(path == '/'){
         '<body><h1>Yeah!</h1>'+
         '</body></html>'
     )
-}else if(path == '/style.css'){
+}else if(path === '/style.css'){
     response.setHeader('Content-Type','text/css; charset=utf-8')
     response.write("body{background-color: grey}h1{color:red}")
-}else if(path == '/main.js.bak'){
+}else if(path === '/main.js.bak'){
     response.setHeader('Content-Type','text/javascript; charset=utf-8')
     response.write("alert('你好!')")
 }else{
     response.statusCode = 404
 }
 response.end()
-  /******** 代码结束，下面不要看 ************/
+  // /******** 代码结束，下面不要看 ************/
 })
 
 server.listen(port)
