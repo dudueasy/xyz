@@ -45,7 +45,7 @@ let server = http.createServer(function (request, response) {
                 htmlData = getHTMLData('index.html')
                 dbData = getDBData('db.txt')
                 Current_Data = dbData - 1
-                updateDBData('db.txt', Current_Data)
+                resetDBData('db.txt', Current_Data)
                 dynamicHtmlData = putDBDataToHTML(htmlData, Current_Data)
 
                 response.write(dynamicHtmlData)
@@ -115,7 +115,7 @@ function getDBData(path, option = 'utf8') {
     return db_data = fs.readFileSync(path, option)
 }
 
-function updateDBData(path, data) {
+function resetDBData(path, data) {
     fs.writeFileSync(path, data)
 
 }
