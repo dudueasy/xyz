@@ -3,8 +3,8 @@ let fs = require('fs')
 let url = require('url')
 let port = process.argv[2]
 
-// 指定端口8888
-port = 8888
+// 指定端口
+port = 9000
 
 if (!port) {
     console.log('请指定端口号, eg: \nnode server.js 8888')
@@ -41,8 +41,6 @@ let server = http.createServer(function (request, response) {
         else if (path === '/xxx') {
             response.statusCode = 200
             response.setHeader('Content-Type', 'text/xml;charset=utf-8')
-            response.setHeader('Access-Control-Allow-Origin', 'http://localhost:9000')
-
             response.write(
                 JSON.stringify({
                     "note": {
