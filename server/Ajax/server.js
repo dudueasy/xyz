@@ -37,10 +37,21 @@ let server = http.createServer(function (request, response) {
             response.setHeader('Content-Type', 'text/javascript;charset=utf-8')
             data = getHTMLData('./main.js')
             response.write(data)
+        } else if (path === '/promise/') {
+            response.statusCode = 200
+            response.setHeader('Content-Type', 'text/html;charset=utf-8')
+            htmlData = getHTMLData('index_promise.html')
+            response.write(htmlData)
+        }
+        else if (path === '/Customized_Promise_Ajax.js') {
+            response.statusCode = 200
+            response.setHeader('Content-Type', 'text/javascript;charset=utf-8')
+            data = getHTMLData('Customized_Promise_Ajax.js')
+            response.write(data)
         }
         else if (path === '/xxx') {
             response.statusCode = 200
-            response.setHeader('Content-Type', 'text/xml;charset=utf-8')
+            response.setHeader('Content-Type', 'text/json;charset=utf-8')
             response.setHeader('Access-Control-Allow-Origin', 'http://localhost:9000')
 
             response.write(
