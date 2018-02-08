@@ -34,8 +34,6 @@ $.ajax = function ({url, method, headers, body}) {
 }
 
 
-
-
 button.addEventListener('click', (e) => {
     $.ajax({
         url: '/xxx',
