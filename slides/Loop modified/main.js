@@ -106,13 +106,12 @@ function bindClickEvnets() {
 function startTimer() {
     console.log('start timer')
 
-    let timerId = setInterval(
+    return setInterval(
         () => {
             index = current + 1
             goToSlide(index)
         }, 2000
     )
-    return timerId
 }
 
 
