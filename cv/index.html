@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的个人简历</title>
+
     <style type="text/css">
         .icon {
             width: 1em;
@@ -20,7 +21,7 @@
     <link href="favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/css/swiper.min.css">
     <link rel="stylesheet" href='style.css'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/js/swiper.min.js"></script>
+    <script src="script/swiper.min.js"></script>
 
 </head>
 
@@ -128,7 +129,7 @@
                 <li>
                     <h3>HTML 5 &amp; CSS 3</h3>
                     <div class="progressBar">
-                        <div class="progress" style="width:90%"></div>
+                        <div class="progress" style="width:80%"></div>
                     </div>
                 </li>
                 <li>
@@ -146,9 +147,9 @@
                     </div>
                 </li>
                 <li>
-                    <h3>Vue.js</h3>
+                    <h3>React.js</h3>
                     <div class="progressBar">
-                        <div class="progress" style="width:0%"></div>
+                        <div class="progress" style="width:60%"></div>
                     </div>
                 </li>
             </div>
@@ -162,7 +163,7 @@
                 <li>
                     <h3>PHP &amp; MySQL</h3>
                     <div class="progressBar">
-                        <div class="progress" style="width:70%"></div>
+                        <div class="progress" style="width:60%"></div>
                     </div>
                 </li>
             </div>
@@ -170,13 +171,13 @@
                 <li>
                     <h3>Python</h3>
                     <div class="progressBar">
-                        <div class="progress" style="width:70%"></div>
+                        <div class="progress" style="width:75%"></div>
                     </div>
                 </li>
                 <li>
                     <h3>Django</h3>
                     <div class="progressBar">
-                        <div class="progress" style="width:70%"></div>
+                        <div class="progress" style="width:75%"></div>
                     </div>
                 </li>
             </div>
@@ -187,35 +188,38 @@
         <h2>作品集</h2>
 
 
-            <!---------swiper 轮播图组件HTML代码开始--------->
+        <!---------swiper 轮播图组件HTML代码开始--------->
 
-            <div class="swiper-container">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <img class="swiper-slide" src="img/works/keyboard_nav.png"/>
-                    <img class="swiper-slide" src="img/works/online_edu.png"/>
-                    <img class="swiper-slide" src="img/works/calm.png"/>
-                    <img class="swiper-slide" src="img/works/canvas_drawboard.jpg"/>
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <img class="swiper-slide" src="img/works/keyboard_nav.png"/>
+                <img class="swiper-slide" src="img/works/online_edu.png"/>
+                <img class="swiper-slide" src="img/works/calm.png"/>
+                <img class="swiper-slide" src="img/works/canvas_drawboard.jpg"/>
 
-                </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- If we need navigation buttons -->
             </div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-            <!---------swiper轮播图组件代码结束--------->
-
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- If we need navigation buttons -->
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <!---------swiper轮播图组件代码结束--------->
 
 
     </section>
 </main>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.1.1/Tween.min.js'></script>
+<script src='script/Tween.min.js'></script>
 <script src="script/script.js"></script>
-<!--swiper轮播图控制代码-->
 <script src="./script/swiper-control.js"></script>
+<script src="./script/smooth-navigation.js"></script>
+<script src="./script/sticky-navbar.js"></script>
+<script src="./script/element-sink-nav-highlighting.js"></script>
+
+
 
 </body>
 </html>
