@@ -1,5 +1,7 @@
 // 用来控制 swiper轮播图的代码
-let mySwiper = new Swiper('.swiper-container', {
+//// 立即执行!
+!function () {
+    let mySwiper = new Swiper('.swiper-container', {
         // Optional parameters
         loop: true,
 
@@ -19,3 +21,4 @@ let mySwiper = new Swiper('.swiper-container', {
             el: '.swiper-scrollbar',
         },
     })
+}()
