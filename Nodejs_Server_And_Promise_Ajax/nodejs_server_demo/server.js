@@ -7,7 +7,7 @@ let port = process.argv[2]
 port = 8888
 
 if (!port) {
-    console.log('请指定端口号, eg: \nnode server.js 8888')
+    console.log('请指定端口号, eg: \nnode Nodejs_Server_And_Promise_Ajax.js 8888')
     process.exit(1)
 }
 

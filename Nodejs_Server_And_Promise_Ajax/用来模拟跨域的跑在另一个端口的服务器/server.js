@@ -7,7 +7,7 @@ let port = process.argv[2]
 port = 9000
 
 if (!port) {
-    console.log('请指定端口号, eg: \nnode server.js 8888')
+    console.log('请指定端口号, eg: \nnode Nodejs_Server_And_Promise_Ajax.js 8888')
     process.exit(1)
 }
 
@@ -32,10 +32,10 @@ let server = http.createServer(function (request, response) {
             htmlData = getHTMLData('index.html')
             response.write(htmlData)
         }
-        else if (path === '/main.js') {
+        else if (path === '/Customized_Ajax.js') {
             response.statusCode = 200
             response.setHeader('Content-Type', 'text/javascript;charset=utf-8')
-            data = getHTMLData('./main.js')
+            data = getHTMLData('./Customized_Ajax.js')
             response.write(data)
         }
         else if (path === '/xxx') {

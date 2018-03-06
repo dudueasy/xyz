@@ -4,7 +4,7 @@ var url = require('url')
 var port = process.argv[2]
 
 if(!port){
-  console.log('请指定端口号好不啦？\nnode server.js 8888 这样不会吗？')
+  console.log('请指定端口号好不啦？\nnode Nodejs_Server_And_Promise_Ajax.js 8888 这样不会吗？')
   process.exit(1)
 }
 
@@ -24,14 +24,14 @@ if(path === '/'){
         '<!DOCTYPE html>'+
         '<html><head>'+
         '<link rel="stylesheet" href="/style.css">'+
-        '<script src="main.js.bak"></script></head>'+
+        '<script src="Customized_Ajax.js.bak"></script></head>'+
         '<body><h1>Yeah!</h1>'+
         '</body></html>'
     )
 }else if(path === '/style.css'){
     response.setHeader('Content-Type','text/css; charset=utf-8')
     response.write("body{background-color: grey}h1{color:red}")
-}else if(path === '/main.js.bak'){
+}else if(path === '/Customized_Ajax.js.bak'){
     response.setHeader('Content-Type','text/javascript; charset=utf-8')
     response.write("alert('你好!')")
 }else{

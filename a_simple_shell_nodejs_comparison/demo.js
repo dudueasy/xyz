@@ -16,4 +16,4 @@ js = 'var string = "Hello World"\nalert(string)'
 
 fs.writeFileSync('index.html',html)
 fs.writeFileSync('css/style.css',css)
-fs.writeFileSync('js/main.js.bak',js)
+fs.writeFileSync('js/Customized_Ajax.js.bak',js)
