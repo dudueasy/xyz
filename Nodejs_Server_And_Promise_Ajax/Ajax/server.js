@@ -1,6 +1,7 @@
 let http = require('http')
 let fs = require('fs')
 let url = require('url')
+let querystring = require('querystring')
 let port = process.argv[2]
 
 // 指定端口8888
@@ -32,23 +33,28 @@ let server = http.createServer(function (request, response) {
             htmlData = getHTMLData('index.html')
             response.write(htmlData)
         }
+        // 获取 Customized_Ajax.js文件
         else if (path === '/Customized_Ajax.js') {
             response.statusCode = 200
             response.setHeader('Content-Type', 'text/javascript;charset=utf-8')
             data = getHTMLData('./Customized_Ajax.js')
             response.write(data)
-        } else if (path === '/promise/') {
+        }
+        // 访问 promise ajax 页面
+        else if (path === '/promise/') {
             response.statusCode = 200
             response.setHeader('Content-Type', 'text/html;charset=utf-8')
             htmlData = getHTMLData('index_promise.html')
             response.write(htmlData)
         }
+        // 获取 Customized_Promise_Ajax.js 文件
         else if (path === '/Customized_Promise_Ajax.js') {
             response.statusCode = 200
             response.setHeader('Content-Type', 'text/javascript;charset=utf-8')
             data = getHTMLData('Customized_Promise_Ajax.js')
             response.write(data)
         }
+        // 获取一个 json 串作为响应
         else if (path === '/xxx') {
             response.statusCode = 200
             response.setHeader('Content-Type', 'text/json;charset=utf-8')
@@ -65,6 +71,73 @@ let server = http.createServer(function (request, response) {
                 })
             )
         }
+        // 访问注册页面
+        else if (path === '/register') {
+            if (method === 'GET') {
+                response.statusCode = 200
+                response.setHeader('Content-Type', 'text/html;charset=utf-8')
+                data = getHTMLData('register.html')
+                response.write(data)
+                response.end()
+            }
+            // 注册页面提交数据
+            else if (method === 'POST') {
+                let data;
+                getPostData(request).then(
+                    (postData) => {
+
+                        let {email, password, confirm_password} = postData
+                        console.log('postData: ', postData)
+                        console.log(email, password, confirm_password)
+                        console.log('typeof email: ', typeof email)
+
+                        if (email.indexOf('@') < 0 || password !== confirm_password) {
+                            console.log('验证失败')
+                            response.statusCode = 400
+                            if (email.indexOf('@') < 0) {
+                                response.setHeader('Content-Type', 'application/json;charset=utf-8')
+                                response.write(`{
+                                    "errors":{
+                                        "email":"invalid"
+                                    }
+                                }`)
+                            }
+                            else if (password !== confirm_password) {
+                                response.setHeader('Content-Type', 'application/json;charset=utf-8')
+                                response.write(`{
+                                    "errors":{
+                                        "password":"not match"
+                                    }
+                                }`)
+                            }
+
+                        }
+                        else {
+                            console.log('验证成功')
+                        }
+
+
+                        // let jsonData = JSON.stringify(postData)
+                        // console.log(jsonData)
+                        // response.statusCode = 200
+                        // response.setHeader('Content-Type', 'text/json;charset=utf-8')
+                        // response.write('test')
+
+                    }
+                )
+
+
+            }
+
+        }
+        // 访问登陆页面
+        else if (path === '/sign_in') {
+            response.statusCode = 200
+            response.setHeader('Content-Type', 'text/html;charset=utf-8')
+            data = getHTMLData('sign_in.html')
+            response.write(data)
+
+        }
         else {
             console.log(path)
             response.statusCode = 404
@@ -78,8 +151,8 @@ let server = http.createServer(function (request, response) {
 //================ 工具代码start here ================
 
 function getHTMLData(path) {
-    // readFileSync 必须制定 encoding参数, 才会返回字符串, 否则返回一个 buffer对象
 
+    // 注意事项: readFileSync 必须指定 encoding参数, 才会返回字符串, 否则返回一个 buffer对象
     return string = fs.readFileSync(path, 'utf8')
 
 }
@@ -97,6 +170,31 @@ function putDBDataToHTML(htmlData, DBData) {
     return htmlData.replace('$tobereplaced$', DBData)
 
 }
+
+function getPostData(request) {
+    return new Promise((resolve, reject) => {
+        let body = ''
+        request.on('data', (chunk) => {
+            body += (chunk)
+        }).on('end', () => {
+            body = querystring.parse(body);
+            resolve(body)
+        })
+    })
+}
+
+// function readBody(request){
+//     return new Promise((resolve, reject)=>{
+//         let body = []
+//         request.on('data', (chunk) => {
+//             body.push(chunk);
+//         }).on('end', () => {
+//             body = Buffer.concat(body).toString();
+//             resolve(body)
+//         })
+//     })
+// }
+
 
 //================ 工具代码end here ================
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+
+    }
+
+    div.form-wrapper {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    form .row {
+        margin: 10px;
+    }
+</style>
+<body>
+
+<div class="form-wrapper">
+    <h2>这是用户注册页面</h2>
+
+    <form id="signUpForm">
+        <div class="row">
+            <label>用户邮箱
+            </label>
+            <input type="email" name="email">
+        </div>
+        <div class="row">
+            <label>用户密码
+            </label>
+            <input type="password" name="password">
+        </div>
+
+        <div class="row">
+            <label>确认密码
+            </label>
+            <input type="password" name="confirm_password">
+        </div>
+
+        <div class="row">
+            <input type="submit" value="注册">
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('#signUpForm').on('submit', (e) => {
+        e.preventDefault()
+        // 获取每个input 的值
+
+        let postData = $('#signUpForm').serializeArray()
+        console.log(postData)
+
+        $.post('/register', postData)
+
+
+    })
+</script>
+</body>
+</html>
