@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Customized_Ajax_Demo</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            height:100vh;
+            background: #eeeeee;
+        }
+        .container{
+            min-width: 600px;
+            padding:16px;
+            background: #fff;
+
+        }
+    </style>
 </head>
 <body>
-<div>
+<div class="container">
 
     <h2> 这个页面使用自定义的 Ajax 发起请求.</h2>
     <hr/>
@@ -14,7 +32,9 @@
     <p>访问 <a href="/promise/"> promise ajax </a></p>
     <a href="/register">进入注册页面</a>
     <a href="/sign_in">进入登陆页面</a>
-
+    <div class="image">
+        <img src="/comic.png" alt="">
+    </div>
 </div>
 </body>
 </html>
