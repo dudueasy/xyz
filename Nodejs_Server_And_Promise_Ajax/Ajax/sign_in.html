@@ -2,10 +2,136 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            border-radius: 2px;
+        }
+
+        body {
+            display: flex;
+            /*justify-content: center;*/
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+            padding-top: 100px;
+        }
+
+        div.form-wrapper {
+            padding: 20px;
+            border: 10px solid #c4dfb8;
+        }
+
+        div h2 {
+            text-align: center;
+        }
+
+        form .row {
+            margin: 16px 10px;
+        }
+
+        form input.highlight {
+            outline: 2px solid red;
+        }
+
+        form .row.message.error {
+            background: #ff7d15;
+            color: white;
+            text-align: center;
+        }
+
+        .row.message.success {
+            background: forestgreen;
+            color: white;
+            text-align: center;
+
+        }
+
+    </style>
     <title>用户登录</title>
+
 </head>
 <body>
-<h2>这是用户登录页面</h2>
+<div class="form-wrapper">
+    <h2>用户登录</h2>
+
+    <form id="signInForm" method="post">
+        <div class="row">
+            <label>用户邮箱
+            </label>
+            <input type="email" name="email" required>
+
+        </div>
+        <div class="row">
+            <label>用户密码
+            </label>
+            <input type="password" name="password" require>
+        </div>
+        <div class="row message">
+        </div>
+
+        <div class="row">
+            <input type="submit" value="登录">
+
+        </div>
+    </form>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    let form = $('#signInForm')
+    let postData = form.serializeArray()
+
+    form.on('submit', (e) => {
+        e.preventDefault()
+        $('div.message').text('')
+        $('form input').removeClass('highlight')
+
+        let postData = $('#signInForm').serializeArray()
+
+        // 前端表单验证
+        let [{value: email}, {value: password}] = postData
+
+        if (!email) {
+            $('div.row.message').text('请输入邮箱').addClass('error')
+        }
+        if (!password) {
+            $('div.row.message').text('请输入密码').addClass('error')
+        }
+        else {
+            $.post('/sign_in', postData).then(
+                (response) => {
+                    // 成功提示
+                    form.find('.row.message').text('登陆成功, 即将转向首页').removeClass('error').addClass('success')
+                    window.location.href= '/'
+                }
+                ,
+                (response) => {
+                    console.log('response', response)
+                    let responseObj = response.responseJSON
+                    console.log(responseObj)
+
+                    if (responseObj['errors']) {
+                        // 错误提示:
+                        Object.keys(responseObj['errors']).forEach(key => {
+                            // // 根据错误信息中包含的key, 来高亮对应的 input[type=key]
+                            form.find(`input[type=${key}]`).addClass('highlight')
+
+                            // //  向 div.row.message 输出错误提示
+                            form.find('.row.message').text(`${key}:${responseObj['errors'][key]}`).addClass('error')
+                        })
+                    }
+
+                }
+            )
+        }
+    })
+</script>
+</body>
+</html>
 
 </body>
 </html>

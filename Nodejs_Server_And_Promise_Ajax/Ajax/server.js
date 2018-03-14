@@ -28,10 +28,50 @@ let server = http.createServer(function (request, response) {
 
         // 访问根路径
         if (path === '/') {
+            // 获取请求cookie中的username, 确认用户的登陆状态
+            let requestCookie = request.headers.cookie
+            let cookieEmail = ''
+            let loginUserData
+            let userLogin = false
+
+            //// 如果请求头中有cookie
+            if (requestCookie) {
+                let cookieArray = requestCookie.split(';')
+
+                cookieArray.forEach((currentCookieString) => {
+                    console.log(currentCookieString)
+                    if (currentCookieString.indexOf('email') >= 0) {
+                        cookieEmail = currentCookieString.split("=")[1]
+                        console.log('cookieEmail:', cookieEmail)
+                    }
+                })
+
+
+                // 检查数据库中是否存在 cookie 中的email
+                if (cookieEmail) {
+                    let userData = JSON.parse(getDBData('./db/users.json'))
+                    userData.forEach((currentUserData) => {
+                        if (currentUserData['email'] === cookieEmail) {
+                            loginUserData = currentUserData
+                            userLogin = true
+                        }
+                    })
+                }
+            }
+
+
             response.statusCode = 200
             response.setHeader('Content-Type', 'text/html;charset=utf-8')
             htmlData = getHTMLData('index.html')
-            // response.write(htmlData)
+
+            if (userLogin) {
+                htmlData = htmlData.replace('__userinfo__', `欢迎回来: ${loginUserData['email']}`)
+            }
+            else {
+                htmlData = htmlData.replace('__userinfo__', '')
+
+            }
+
             response.end(htmlData)
         }
         //
@@ -103,9 +143,10 @@ let server = http.createServer(function (request, response) {
                 getPostData(request).then(
                     (postData) => {
 
+                        // 获取Post 数据中的 邮箱 和 密码
                         let {email, password, confirm_password} = postData
                         console.log('postData: ', postData)
-                        console.log(email, password, confirm_password)
+
                         console.log('typeof email: ', typeof email)
                         // 验证失败
                         if (email.indexOf('@') < 0 || password !== confirm_password) {
@@ -123,36 +164,112 @@ let server = http.createServer(function (request, response) {
                                 response.write(`{ "errors":{ "password":"not match"} }`)
                                 response.end()
                             }
-
                         }
-                        // 验证成功
+                        // 表单数据验证成功
                         else {
-                            response.statusCode = 200
-                            response.setHeader('Content-Type', 'application/json;charset=utf-8')
-                            response.write(`"验证成功"`)
-                            response.end()
+
+                            //  获取数据库用户数据
+                            let userData = JSON.parse(getDBData('./db/users.json'))
+
+                            // 检查email重复函数
+                            function isEmailDuplicated(currentUserData, index, userDataArray) {
+                                return (currentUserData['email'] === email)
+                            }
+
+                            // email 重复
+                            if (userData.some(isEmailDuplicated)) {
+                                response.statusCode = 400
+                                response.setHeader('Content-Type', 'application/json;charset=utf-8')
+                                response.write(`{"errors":{"email":"duplicated"}}`)
+                                // response.write(`{ "errors":{ "password":"not match"} }`)
+
+                                response.end()
+
+                            }
+                            // email 可用. 向数据库写入数据
+                            else {
+                                // 数据库校验成功, 新建一个用户并添加到数据库 (db/users.json)
+                                // 创建一个用户id
+                                let userid = userData.slice(-1)[0]['userid'] + 1
+                                let newUser = {'userid': userid, 'email': email, 'password': password}
+                                userData.push(newUser)
+                                updateDBData('./db/users.json', JSON.stringify(userData))
+
+                                // 返回响应
+                                response.statusCode = 200
+                                response.setHeader('Content-Type', 'application/json;charset=utf-8')
+                                response.write(`{ "success":"true" }`)
+                                response.end()
+                            }
                         }
-
-
-                        // let jsonData = JSON.stringify(postData)
-                        // console.log(jsonData)
-                        // response.statusCode = 200
-                        // response.setHeader('Content-Type', 'text/json;charset=utf-8')
-                        // response.write('test')
-
                     }
                 )
             }
         }
-        // 访问登陆页面
+        // 访问登录页面
         else if (path === '/sign_in') {
-            response.statusCode = 200
-            response.setHeader('Content-Type', 'text/html;charset=utf-8')
-            data = getHTMLData('sign_in.html')
-            response.write(data)
-            response.end()
+            if (method === 'GET') {
+                response.statusCode = 200
+                response.setHeader('Content-Type', 'text/html;charset=utf-8')
+                data = getHTMLData('sign_in.html')
+                response.write(data)
+                response.end()
+            }
+            if (method === 'POST') {
 
+                // 获取登录数据
+                getPostData(request).then(
+                    (postData) => {
 
+                        // 获取Post 数据中的 邮箱 和 密码
+                        let {email, password} = postData
+                        console.log('postData: ', postData)
+
+                        // 初始化查询的结果
+                        let queryResult = {found: false, match: false, data: {}}
+
+                        // 查询数据库, 向 queryResult 写入结果
+                        let userData = JSON.parse(getDBData('./db/users.json'))
+                        userData.forEach((currentUserData) => {
+                            if (currentUserData['email'] === email) {
+                                queryResult['found'] = true
+                                if (currentUserData['password'] === password) {
+                                    queryResult['match'] = true
+                                    queryResult['data'] = currentUserData
+                                }
+                            }
+                        })
+
+                        // 根据查询的结果做出响应
+                        //// 邮箱匹配
+                        if (queryResult['found']) {
+                            // 密码匹配, 登录成功
+                            if (queryResult['match']) {
+                                response.statusCode = 200
+                                response.setHeader('Content-Type', 'text/html;charset=utf-8')
+                                response.setHeader(`Set-Cookie`, [`userid=${queryResult['data']['userid']};HttpOnly`,
+                                    `email=${queryResult['data']['email']};HttpOnly`])
+
+                                response.write(`{ "success":"true" }`)
+                                response.end()
+                            }
+                            // 密码不匹配
+                            else {
+                                response.statusCode = 401
+                                response.setHeader('Content-Type', 'application/json;charset=utf-8')
+                                response.write(`{ "errors":{ "password":"not match"} }`)
+                                response.end()
+                            }
+                        } // 邮箱不匹配
+                        else {
+                            response.statusCode = 401
+                            response.setHeader('Content-Type', 'application/json;charset=utf-8')
+                            response.write(`{ "errors":{ "email":"not found"} }`)
+                            response.end()
+                        }
+                    }
+                )
+            }
         }
 
         // 如果访问的是其他路径
@@ -176,12 +293,11 @@ function getHTMLData(path) {
 }
 
 function getDBData(path, option = 'utf8') {
-    return db_data = fs.readFileSync(path, option)
+    return fs.readFileSync(path, option)
 }
 
 function updateDBData(path, data) {
     fs.writeFileSync(path, data)
-
 }
 
 function putDBDataToHTML(htmlData, DBData) {

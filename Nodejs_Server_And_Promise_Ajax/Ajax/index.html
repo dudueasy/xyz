@@ -4,34 +4,63 @@
     <meta charset="UTF-8">
     <title>Customized_Ajax_Demo</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
-        body{
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        html {
+            margin-bottom: 0;
+        }
+
+        body {
             display: flex;
             justify-content: center;
-            height:100vh;
             background: #eeeeee;
+            margin-bottom: 0;
         }
-        .container{
-            min-width: 600px;
-            padding:16px;
+
+        button {
+            padding: 5px;
+        }
+
+        .container {
+            min-width: 500px;
+            padding: 16px;
             background: #fff;
+            margin-bottom: 0;
 
         }
     </style>
 </head>
 <body>
 <div class="container">
-
-    <h2> 这个页面使用自定义的 Ajax 发起请求.</h2>
+    <div class="welcome">__userinfo__</div>
+    <h2> 我的首页</h2>
     <hr/>
-    <button id="myButton">点我发起 ajax 请求</button>
-    <script src="Customized_Ajax.js"></script>
-    <p>访问 <a href="/promise/"> promise ajax </a></p>
-    <a href="/register">进入注册页面</a>
-    <a href="/sign_in">进入登陆页面</a>
+    <div>
+        <button id="myButton">点我发起 ajax 请求</button>
+        <script src="Customized_Ajax.js"></script>
+    </div>
+    <div>
+        <a href="/promise/">
+            <button>进入 promise ajax 页面</button>
+        </a>
+    </div>
+    <div>
+        <a href="/register">
+            <button>进入注册页面</button>
+        </a>
+    </div>
+    <div>
+        <a href="/sign_in">
+            <button>进入登陆页面</button>
+        </a>
+    </div>
     <div class="image">
         <img src="/comic.png" alt="">
     </div>
