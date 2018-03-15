@@ -13,6 +13,7 @@ if (!port) {
 }
 
 let server = http.createServer(function (request, response) {
+        // 服务器初始化设置: 地址解析, 获取查询参数, 请求类型
         let parsedUrl = url.parse(request.url, true)
         let pathWithQuery = request.url
         let queryString = ''
@@ -26,6 +27,10 @@ let server = http.createServer(function (request, response) {
         console.log('查询字符串的路径为 \n' + pathWithQuery)
         console.log(method)
 
+        // 初始化 sessions
+        let sessions = getDBData('./db/sessions.json')
+        console.log(sessions)
+
         // 访问根路径
         if (path === '/') {
             // 获取请求cookie中的username, 确认用户的登陆状态
@@ -38,25 +43,32 @@ let server = http.createServer(function (request, response) {
             if (requestCookie) {
                 let cookieArray = requestCookie.split(';')
 
+                // 检查cookie中是否sessionId
+                // 检查sessionId是否有效if(sessions[sessionId])
+
                 cookieArray.forEach((currentCookieString) => {
                     console.log(currentCookieString)
-                    if (currentCookieString.indexOf('email') >= 0) {
-                        cookieEmail = currentCookieString.split("=")[1]
-                        console.log('cookieEmail:', cookieEmail)
+                    if (currentCookieString.indexOf('sessionId') >= 0) {
+                        sessionId = currentCookieString.split("=")[1]
+                        console.log('sessionId:', sessionId)
+                        if (sessions[sessionId]) {
+                            loginUserData = sessions[sessionId]
+                            console.log('loginUserData', loginUserData)
+                            userLogin = true
+                        }
                     }
                 })
 
-
-                // 检查数据库中是否存在 cookie 中的email
-                if (cookieEmail) {
-                    let userData = JSON.parse(getDBData('./db/users.json'))
-                    userData.forEach((currentUserData) => {
-                        if (currentUserData['email'] === cookieEmail) {
-                            loginUserData = currentUserData
-                            userLogin = true
-                        }
-                    })
-                }
+                //     // 检查数据库中是否存在 cookie 中的email
+                //     if (cookieEmail) {
+                //         let userData = getDBData('./db/users.json')
+                //         userData.forEach((currentUserData) => {
+                //             if (currentUserData['email'] === cookieEmail) {
+                //                 loginUserData = currentUserData
+                //                 userLogin = true
+                //             }
+                //         })
+                //     }
             }
 
 
@@ -73,6 +85,14 @@ let server = http.createServer(function (request, response) {
             }
 
             response.end(htmlData)
+        }
+        //
+        else if (path === '/favicon.ico') {
+            response.statusCode = 200
+            htmlData = fs.readFileSync('favicon.ico', "binary");
+            response.write(htmlData, "binary"); //格式必须为 binary，否则会出错
+
+            response.end()
         }
         //
         else if (path === '/comic.png') {
@@ -117,14 +137,14 @@ let server = http.createServer(function (request, response) {
             response.setHeader('Access-Control-Allow-Origin', 'http://localhost:9000')
 
             response.write(
-                JSON.stringify({
+                {
                     "note": {
                         "to": "George",
                         "from": "John",
                         "heading": "Reminder",
                         "body": "Don\'t forget the meeting"
                     }
-                })
+                }
             )
             response.end()
 
@@ -169,7 +189,7 @@ let server = http.createServer(function (request, response) {
                         else {
 
                             //  获取数据库用户数据
-                            let userData = JSON.parse(getDBData('./db/users.json'))
+                            let userData = getDBData('./db/users.json')
 
                             // 检查email重复函数
                             function isEmailDuplicated(currentUserData, index, userDataArray) {
@@ -193,7 +213,7 @@ let server = http.createServer(function (request, response) {
                                 let userid = userData.slice(-1)[0]['userid'] + 1
                                 let newUser = {'userid': userid, 'email': email, 'password': password}
                                 userData.push(newUser)
-                                updateDBData('./db/users.json', JSON.stringify(userData))
+                                updateDBData('./db/users.json', userData)
 
                                 // 返回响应
                                 response.statusCode = 200
@@ -229,7 +249,7 @@ let server = http.createServer(function (request, response) {
                         let queryResult = {found: false, match: false, data: {}}
 
                         // 查询数据库, 向 queryResult 写入结果
-                        let userData = JSON.parse(getDBData('./db/users.json'))
+                        let userData = getDBData('./db/users.json')
                         userData.forEach((currentUserData) => {
                             if (currentUserData['email'] === email) {
                                 queryResult['found'] = true
@@ -245,10 +265,15 @@ let server = http.createServer(function (request, response) {
                         if (queryResult['found']) {
                             // 密码匹配, 登录成功
                             if (queryResult['match']) {
+
+                                // 创建一个sessionId, 将sessionId 和用户数据存入 sessions
+                                let sessionId = Math.random() * 1e6
+                                sessions[sessionId] = {email: email}
+                                updateDBData('./db/sessions.json', sessions)
+
                                 response.statusCode = 200
                                 response.setHeader('Content-Type', 'text/html;charset=utf-8')
-                                response.setHeader(`Set-Cookie`, [`userid=${queryResult['data']['userid']};HttpOnly`,
-                                    `email=${queryResult['data']['email']};HttpOnly`])
+                                response.setHeader(`Set-Cookie`, [`sessionId=${sessionId};HttpOnly`])
 
                                 response.write(`{ "success":"true" }`)
                                 response.end()
@@ -293,11 +318,11 @@ function getHTMLData(path) {
 }
 
 function getDBData(path, option = 'utf8') {
-    return fs.readFileSync(path, option)
+    return JSON.parse(fs.readFileSync(path, option))
 }
 
 function updateDBData(path, data) {
-    fs.writeFileSync(path, data)
+    fs.writeFileSync(path, JSON.stringify(data))
 }
 
 function putDBDataToHTML(htmlData, DBData) {
