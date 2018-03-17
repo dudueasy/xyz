@@ -57,7 +57,7 @@
         </a>
     </div>
     <div>
-        <a href="/sign_in">
+        <a href="/login">
             <button>进入登陆页面</button>
         </a>
     </div>
@@ -65,5 +65,14 @@
         <img src="/comic.png" alt="">
     </div>
 </div>
+<script>
+    let informed = localStorage.getItem('informed')
+    if (!informed) {
+        alert('这是一个提示信息')
+        localStorage.setItem('informed', 'true')
+    }
+
+
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@ let fs = require('fs')
 let url = require('url')
 let querystring = require('querystring')
 let port = process.argv[2]
-
+let md5 = require('md5')
 // 指定端口8888
 port = 8888
 
@@ -11,6 +11,8 @@ if (!port) {
     console.log('请指定端口号, eg: \nnode Nodejs_Server_And_Promise_Ajax.js 8888')
     process.exit(1)
 }
+
+//================ 工具代码start here ================
 
 let server = http.createServer(function (request, response) {
         // 服务器初始化设置: 地址解析, 获取查询参数, 请求类型
@@ -98,19 +100,36 @@ let server = http.createServer(function (request, response) {
         else if (path === '/comic.png') {
             response.statusCode = 200
             response.setHeader('Content-Type', 'image/png')
+
             htmlData = fs.readFileSync('comic.png', "binary");
             response.write(htmlData, "binary"); //格式必须为 binary，否则会出错
 
             response.end()
         }
         // 获取 Customized_Ajax.js文件
-        else if (path === '/Customized_Ajax.js') {
-            response.statusCode = 200
-            response.setHeader('Content-Type', 'text/javascript;charset=utf-8')
-            data = getHTMLData('./Customized_Ajax.js')
-            response.write(data)
-            response.end()
 
+        else if (path === '/Customized_Ajax.js') {
+
+            response.setHeader('Content-Type', 'text/javascript;charset=utf-8')
+
+            //对请求中的 Etag 标识符判断
+            data = getHTMLData('./Customized_Ajax.js')
+            let fileMd5 = md5(data)
+
+            response.setHeader('Etag', fileMd5)
+
+            // 请求返回的文件标识符一致, 无需更新
+            if (request.headers['if-none-match'] === fileMd5) {
+                response.statusCode = 304 // 告诉浏览器资源没有变化, 直接使用缓存, 所以不需要响应体.
+
+            }
+            // 标识符不一致, 需要更新
+            else {
+                response.statusCode = 200
+                response.write(data)
+            }
+
+            response.end()
         }
         // 访问 promise ajax 页面
         else if (path === '/promise/') {
@@ -137,14 +156,14 @@ let server = http.createServer(function (request, response) {
             response.setHeader('Access-Control-Allow-Origin', 'http://localhost:9000')
 
             response.write(
-                {
+                JSON.stringify({
                     "note": {
                         "to": "George",
                         "from": "John",
                         "heading": "Reminder",
                         "body": "Don\'t forget the meeting"
                     }
-                }
+                })
             )
             response.end()
 
@@ -227,11 +246,11 @@ let server = http.createServer(function (request, response) {
             }
         }
         // 访问登录页面
-        else if (path === '/sign_in') {
+        else if (path === '/login') {
             if (method === 'GET') {
                 response.statusCode = 200
                 response.setHeader('Content-Type', 'text/html;charset=utf-8')
-                data = getHTMLData('sign_in.html')
+                data = getHTMLData('login.html')
                 response.write(data)
                 response.end()
             }
@@ -307,8 +326,6 @@ let server = http.createServer(function (request, response) {
         }
     }
 )
-
-//================ 工具代码start here ================
 
 function getHTMLData(path) {
 

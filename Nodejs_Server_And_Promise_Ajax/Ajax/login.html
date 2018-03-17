@@ -102,7 +102,7 @@
             $('div.row.message').text('请输入密码').addClass('error')
         }
         else {
-            $.post('/sign_in', postData).then(
+            $.post('/login', postData).then(
                 (response) => {
                     // 成功提示
                     form.find('.row.message').text('登陆成功, 即将转向首页').removeClass('error').addClass('success')
